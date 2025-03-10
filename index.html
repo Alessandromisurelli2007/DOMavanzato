@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <style>
+        .evidenziato {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>Crea un link</p>
+    <button onclick="primobottone()">Crea</button>
+    <p id="lista"></p>
+    <ul>
+        <li>elemento 1</li>
+        <li>elemento 2</li>
+        <li>elemento 3</li>
+    </ul>
+    <button onclick="secondobottone()">Cambia Colore</button>
+    <input id="testo" type="text">
+    <button onclick="terzobottone()">Aggiungi alla lista</button>
+    <button onclick="quartoBottone()">Evidenzia Primo e Ultimo</button>
+    <button onclick="sestoBottone()">Sostituisci con "Che bello Javascript!"</button>
+
+    <script>
+        function primobottone() {
+            let clicca = document.getElementById("lista")
+            clicca.textContent = "https://classroom.google.com/c/Njg1NjM1NDI1ODcy/a/MjMxMTI3NjUwNTZa/details"
+        }
+
+        function secondobottone() {
+            const elementi = document.getElementsByTagName("li")
+            for (let i = 0; i < elementi.length; i++) {
+                elementi[i].style.color = "red"
+            }
+        }
+
+        function terzobottone() {
+            const testo = document.getElementById("testo").value.trim();
+            const lista = document.getElementById("lista");
+            const nuovoElemento = document.createElement("li");
+            nuovoElemento.textContent = testo;
+            lista.appendChild(nuovoElemento);
+            document.getElementById("testo").value = "";
+        }
+
+        function quartoBottone() {
+            const elementi = document.querySelectorAll("#lista li"); 
+            if (elementi.length > 0) {
+                elementi.forEach(el => el.classList.remove("evidenziato"));
+                if (elementi.length >= 1) {
+                    elementi[0].classList.add("evidenziato");
+                }
+                if (elementi.length > 1) {
+                    elementi[elementi.length - 1].classList.add("evidenziato");
+                }
+            }
+        }
+
+        function sestoBottone() {
+            const lista = document.getElementById("lista");
+            lista.innerHTML = ""; 
+            const nuovoElemento = document.createElement("li");
+            nuovoElemento.textContent = "Che bello Javascript!";
+            lista.appendChild(nuovoElemento); 
+        }
+
+    </script>
+</body>
+
+</html>
